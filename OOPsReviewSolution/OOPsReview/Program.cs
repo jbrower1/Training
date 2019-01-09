@@ -10,6 +10,22 @@ namespace OOPsReview
     {
         static void Main(string[] args)
         {
+            /*dice game
+            2 player
+            record wins
+            record moves
+            display moves
+            higher number wins
+
+            Die character (Object)
+            Size (Int)
+            Color (String)
+            Face (Int)
+            Roll Method
+            Random number, Assign face
+
+            (Menu?) ()
+            */
         }
     }
 }
