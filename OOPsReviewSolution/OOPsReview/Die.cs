@@ -20,7 +20,7 @@ namespace OOPsReview
 
         private int _Size;
         private string _Color;
-        private int _Face;
+       
 
         //Properties
         // a property is an external interface between the user
@@ -43,10 +43,39 @@ namespace OOPsReview
                 //Takes the suplied user value and places it into the internal private data member
 
                 //The incoming piece of data is place into a special variable that is called "value"
-                _Size = value;
+
+                //Optionally you may place validation on the incoming value
+
+                if (value >= 6 && value <= 20)
+                {
+                    _Size = value;
+                }
+                else
+                {
+                    throw new Exception("Die cannot be " + value.ToString() + " sides. Die must have between 6 and 20 sides.");
+                }
+
+                
+
             }
         }
         
+   
+        // Auto implimented Property
+        //Public
+        // It has a datatype
+        // it has a name
+        //IT DOES NOT HAVE AN INTERNAL DATA MEMBER THAT YOU CAN DIRECTLY ACCESS.
+        // the system will create, internally, a data storage area of the apropriate 
+        //datatype and manage the area
+
+        //the only way to access the data of an auto implimented property is via 
+        //the property
+        //Usually used when there is no need for any internal validation or other 
+        // Property logic
+
+        public int _FaceValue { get; set; }
+
         public string Color
         {
             get
@@ -55,22 +84,26 @@ namespace OOPsReview
             }
             set
             {
-                _Color = value;
-            }
-        }
-
-        public int Face
-        {
-            get
-            {
-                return _Face;
+                // (value == null) this will fail for an empty string
+                // (value == "") this will fail for a null value
+                if(string.IsNullOrEmpty(value))
+                {
+                    throw new Exception("Color has no value");
+                }
+                else
+                {
+                    _Color = value;
+                }
             }
         }
 
         //Constructor
 
+        
+
 
         //Behaviours (Methods)
+
 
     }
 }
