@@ -1,8 +1,9 @@
 ﻿@{
     Layout = "~/_Layout.cshtml";
     Page.Title = "CheckBoxes";
-    
-    
+
+    var choices = "";
+    var thebutton = Request.Form["formbutton"];
 }
 @section head
 {
@@ -12,22 +13,60 @@
     <h1>CheckBoxes</h1>
 }
 
+@if (IsPost)
+{
+    // determine which button was pressed
+    if (thebutton.Equals("clear"))
+    {
+        choices = "";
+    }
+    else
+    {
+
+        //postpone the collection of the form data until there is acually a post back
+        choices = Request.Form["gamegroup"];
+        if (string.IsNullOrEmpty(choices))
+        {
+            choices = "";
+        <p><span style="color:firebrick;"><strong>You did not select a gaming platform</strong></span></p>
+        }
+        else
+        {
+            //the result of the input data is a set of 
+            //   comma seperated values in a string
+            //we will use the string method .Split(delimiter)
+            //to break apart this set of values into an array of strings
+            //the delimiter for CSV is a character comma ','
+        <p>
+            I see you like to use the following platforms:
+            <ul>
+                @foreach (var platform in choices.Split(','))
+                {
+                    <li>@platform</li>
+                }
+            </ul>
+        </p>
+        }
+    }
+}
+
+
     <form id="theform" method="post">
         <div class="row">
             <div class="col-md-offset-2">
                 <label id="gamegroup">Select your favorite Gaming Platform</label>
                 <br />
-                <input type="checkbox" id="gamegroup" name="gamegroup" value="Ps4"  />PS4
+                <input type="checkbox" id="gamegroup" name="gamegroup" value="Ps4" @(Array.IndexOf(choices.Split(','), "Ps4") >= 0 ? "checked" : "") />PS4
                 <br />
-                <input type="checkbox" id="gamegroup" name="gamegroup" value="XBox1"  />Xbox One
+                <input type="checkbox" id="gamegroup" name="gamegroup" value="XBox1" @(Array.IndexOf(choices.Split(','), "XBox1") >= 0 ? "checked" : "") />Xbox One
                 <br />
-                <input type="checkbox" id="gamegroup" name="gamegroup" value="PC"  />PC
+                <input type="checkbox" id="gamegroup" name="gamegroup" value="PC" @(Array.IndexOf(choices.Split(','), "PC") >= 0 ? "checked" : "") />PC
                 <br />
-                <input type="checkbox" id="gamegroup" name="gamegroup" value="NintendoSwitch" />Nintendo Switch
+                <input type="checkbox" id="gamegroup" name="gamegroup" value="NintendoSwitch" @(Array.IndexOf(choices.Split(','), "NintendoSwitch") >= 0 ? "checked" : "")/>Nintendo Switch
                 <br />
-                <input type="checkbox" id="gamegroup" name="gamegroup" value="Cell"/>Cell Phone
+                <input type="checkbox" id="gamegroup" name="gamegroup" value="Cell" @(Array.IndexOf(choices.Split(','), "Cell") >= 0 ? "checked" : "")/>Cell Phone
                 <br />
-                <input type="checkbox" id="gamegroup" name="gamegroup" value="Ipad" />Ipad
+                <input type="checkbox" id="gamegroup" name="gamegroup" value="Ipad" @(Array.IndexOf(choices.Split(','), "Ipad") >= 0 ? "checked" : "")/>Ipad
                 <br />
                 <br />
               
@@ -36,6 +75,8 @@
         <div class="row">
             <div class="col-md-offset-3">
                 <button type="submit" class="btn btn-primary" id="formbutton" name="formbutton" value="submit">Submit</button>
+                &nbsp; &nbsp;
+                <button type="submit" class="btn" id="formbutton" name="formbutton" value="clear">Clear</button>
             </div>
         </div>
     </form>
