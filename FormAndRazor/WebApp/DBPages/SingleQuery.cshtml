@@ -1,8 +1,9 @@
 ﻿@{
     Layout = "~/_Layout.cshtml";
-    Page.Title ="DB - SingleQuery";
+    Page.Title = "DB - SingleQuery";
 
     var searcharg = Request.Form["searcharg"];
+    var thebutton = Request.Form["formButton"];
     var regionid = "";
     var description = "";
 
@@ -10,7 +11,7 @@
     //searcharg will be null
     //looking up a sql table by primary key using a value of null
     //will not be sucessful
-    if(string.IsNullOrEmpty(searcharg))
+    if (string.IsNullOrEmpty(searcharg))
     {
         searcharg = "0";
     }
@@ -24,7 +25,7 @@
     //values which will be passed with the command are coded with placeholders
     //a placeholder is @n where n is an index value
     //on execution, the placeholder will be be changed to the supplied argument value
-    var querycommand = "SELECT regionID, RegionDescription "
+    var querycommand = "SELECT RegionID, RegionDescription "
                         + "FROM Region "
                         + "WHERE RegionID = @0";
 
@@ -33,22 +34,53 @@
     //.QuerySingle() Used when one expects a single record to be returned
     //.Query() Used when one expects 0 1 ore more records to be returned
     //.QueryValue() used when one expects a single value (NOT A RECORD) to be returned
+
     var results = db.QuerySingle(querycommand, searcharg);
 
-    if(string.IsNullOrEmpty(results))
-    {
-        results = "";
-    }
 }
 
 @section banner{
     <h1>Database: Single Query</h1>
 }
+@if(IsPost)
+{
+    if(thebutton.Equals("clear"))
+    {
+        searcharg = "0";
+        regionid = "";
+        description = "";
+    }
+    else
+    {
+        //test to see if any record was returned from the query
+        //if no record was returned then the results will be null
+        if(results == null)
+        {
+            <p><span style="color:seagreen">No data found for region id at @searcharg</span></p>
+            regionid = "";
+            description = "";
+        }
+        else
+        {
+            //a record was accually retrived
+            //set your output fields
+            //how does one access a data field on the resulting
+            //data record(s)
+
+            //a) via index xxxx[columnindex]
+            //b) via the column title xxxx.conlumtitlename
+
+            <p><span style="color:forestgreen">Found</span></p>
+            regionid = results[0].ToString();
+            description = results.RegionDescription;
+        }
+    }
+}
     <form id="theform" method="post">
         <div class="row">
             <div class="col-md-4">
                 <label for="searcharg">Enter Region ID</label>
-                <input type="text" id="searcharg" name="searcharg" placeholder="enter region id" value="@searcharg" />
+                <input type="number" id="searcharg" name="searcharg" placeholder="enter region id" step="1" min="0" value="@searcharg" />
                 <br />
                 <button type="submit" id="formbutton" name="formbutton" class="btn btn-primary" value="search">Search</button>
                 &nbsp;&nbsp;
