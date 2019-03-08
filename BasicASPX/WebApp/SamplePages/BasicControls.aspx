@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BasicControls.aspx.cs" Inherits="WebApp.SamplePages.BasicControls" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <h1>Basic Controls</h1>
     <table align="center" style="width: 80%; border: 1px solid #000000; background-color: #33CCFF">
         <tr>
             <td align="right">Textbox</td>
@@ -46,7 +47,7 @@
             <td>
                 <asp:DropDownList ID="CollectionList" runat="server">
                 </asp:DropDownList>
-
+                &nbsp; &nbsp;
                 <asp:Button ID="DropDownChoice" runat="server" Text="Submit List" OnClick ="DropDownList_Click"/>
             </td>
         </tr>
