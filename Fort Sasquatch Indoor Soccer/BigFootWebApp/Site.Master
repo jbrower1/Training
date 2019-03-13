@@ -50,7 +50,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     
-                    <asp:Menu ID="SiteNav" runat="server" DataSourceID="SiteMapDS" Orientation="Horizontal" StaticDisplayLevels="1" StaticMenuStyle-CssClass="nav navbar-nav" StaticSelectedStyle-CssClass="active" DynamicMenuStyle-CssClass="dropdown-menu" IncludeStyleBlock="false" EnableTheming="false" EnableViewState="false"></asp:Menu>
+                    <asp:Menu ID="SiteNav" runat="server" DataSourceID="SiteMapDS" Orientation="Horizontal" StaticDisplayLevels="1" StaticMenuStyle-CssClass="nav navbar-nav"
+                        StaticSelectedStyle-CssClass="active" DynamicMenuStyle-CssClass="dropdown-menu" IncludeStyleBlock="false" EnableTheming="false" EnableViewState="false"></asp:Menu>
                     <asp:SiteMapDataSource ID ="SiteMapDS" runat="server" ShowStartingNode ="false"/>
                 </div>
             </div>
