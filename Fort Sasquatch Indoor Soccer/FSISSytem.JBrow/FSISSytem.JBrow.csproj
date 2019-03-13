@@ -4,4 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FISISSystem.JBrow.Data\FISISSystem.JBrow.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BLL\" />
+    <Folder Include="DAL\" />
+  </ItemGroup>
+
 </Project>
