@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NorthwindSystem
+namespace FSISSystem.JBrow
 {
     public class Class1
     {
