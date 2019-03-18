@@ -29,7 +29,7 @@ namespace NorthwindSystem.Data
         //1) Identity   pkey on sql table(considered default)
         // [Key] assumes identity pkey ending in ID or id
         //2) Compound   pkey on sql table
-        // [Key, Column(Order=n)] where n is the numeric value of the physica; order of the attribute in the key
+        // [Key, Column(Order=n)] where n is the numeric value of the physical order of the attribute in the key
         //3) user supplied PK
         // [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]  
 
