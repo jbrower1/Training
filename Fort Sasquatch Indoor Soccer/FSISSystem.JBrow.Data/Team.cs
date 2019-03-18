@@ -14,7 +14,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FSISSystem.JBrow.Data
 {
     [Table("Team")]
-    class Team
+    public class Team
     {
         [Key]
         public int TeamID { get; set; }
