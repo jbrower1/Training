@@ -5,12 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="DAL\" />
+    <ProjectReference Include="..\FISISSystem.JBrow.Data\FISISSystem.JBrow.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Northwind.Data\Northwind.Data.csproj" />
+    <Folder Include="BLL\" />
+    <Folder Include="DAL\" />
   </ItemGroup>
 
 </Project>

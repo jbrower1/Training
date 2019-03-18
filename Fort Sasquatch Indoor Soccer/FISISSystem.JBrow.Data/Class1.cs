@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NorthwindSystem
+namespace FISISSystem.JBrow.Data
 {
     public class Class1
     {

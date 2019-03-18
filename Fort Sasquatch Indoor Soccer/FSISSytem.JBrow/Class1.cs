@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NorthwindSystem
+namespace FSISSytem.JBrow
 {
     public class Class1
     {
