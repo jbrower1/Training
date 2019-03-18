@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -189,6 +195,7 @@
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
+    <Content Include="WebConnectionStrings.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -255,12 +262,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Northwind.Data\Northwind.Data.csproj">
-      <Project>{13ec6024-53c1-4a5b-9c8b-6ece70859b11}</Project>
-      <Name>Northwind.Data</Name>
+    <ProjectReference Include="..\NorthwindSystem.Data\NorthwindSystem.Data.csproj">
+      <Project>{049d50cf-6651-4c91-9f25-b12735e3dff4}</Project>
+      <Name>NorthwindSystem.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\NorthwindSystem\NorthwindSystem.csproj">
-      <Project>{fdcd03b6-ea67-405f-be0d-b3a589ded2b7}</Project>
+      <Project>{d63c80e5-19b5-43cb-8ddb-b18224ee095a}</Project>
       <Name>NorthwindSystem</Name>
     </ProjectReference>
   </ItemGroup>
