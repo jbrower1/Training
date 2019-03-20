@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{049D50CF-6651-4C91-9F25-B12735E3DFF4}</ProjectGuid>
+    <ProjectGuid>{B477CB71-9AA3-499A-B19F-642C731462E0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NorthwindSystem.Data</RootNamespace>

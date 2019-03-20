@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D63C80E5-19B5-43CB-8DDB-B18224EE095A}</ProjectGuid>
+    <ProjectGuid>{31E07BCB-59EE-463F-9924-1AD7F77ADF6B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NorthwindSystem</RootNamespace>
@@ -48,14 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\ProductContoller.cs" />
+    <Compile Include="BLL\ProductController.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DAL\NorthwindContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NorthwindSystem.Data\NorthwindSystem.Data.csproj">
-      <Project>{049d50cf-6651-4c91-9f25-b12735e3dff4}</Project>
+      <Project>{b477cb71-9aa3-499a-b19f-642c731462e0}</Project>
       <Name>NorthwindSystem.Data</Name>
     </ProjectReference>
   </ItemGroup>
