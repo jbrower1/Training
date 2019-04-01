@@ -51,7 +51,12 @@
                     </asp:DropDownList>
                     <br />
                     <br />
-                    <asp:GridView ID="ProductGridViewV1" runat="server">
+                    <asp:GridView ID="ProductGridViewV1" runat="server"> 
+
+                        <EmptyDataTemplate>
+                            No data to show for selected category <!-- USE FOR ASSIGNMENT 10 --> 
+                        </EmptyDataTemplate>
+
                     </asp:GridView>
                 </fieldset>
             </asp:View>
