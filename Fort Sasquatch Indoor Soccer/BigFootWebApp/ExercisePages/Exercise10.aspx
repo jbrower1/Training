@@ -23,9 +23,7 @@
     <fieldset class="form-horizontal">
                     
                     <asp:Label ID="Label1" runat="server" Text="Teams: "></asp:Label>
-                    <asp:DropDownList ID="TeamList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="TeamList_SelectedIndexChanged">
-                        
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="TeamList" runat="server"></asp:DropDownList>
                     <asp:Button ID="Button1" runat="server" Text="Search" Font-Size="Large" ForeColor="#438ACA" BackColor="White" BorderColor="White" BorderStyle="None" />
                     <br />
                     <br />
