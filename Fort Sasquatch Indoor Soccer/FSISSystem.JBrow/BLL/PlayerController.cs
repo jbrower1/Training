@@ -6,27 +6,23 @@ using System.Threading.Tasks;
 
 #region Additional Namespaces
 using FSISSystem.JBrow.Data; 
-using FSISSystem.JBrow.DAL;  
+using FSISSystem.JBrow.DAL;
+using System.Data.SqlClient;
 #endregion
 
 namespace FSISSystem.JBrow.BLL
 {
     public class PlayerController
     {
-       
 
-        public List<Player> Player_List()
+        public List<Player> Players_GetByTeam(int teamid)
         {
             using (var context = new FSISContext())
             {
-                return context.Players.ToList();
-            }
-        }
-        public Team Player_Get(int playerid)
-        {
-            using (var context = new FSISContext())
-            {
-                return context.Teams.Find(playerid);
+                IEnumerable<Player> results =
+                    context.Database.SqlQuery<Player>("Player_GetByTeam @TeamID",
+                                    new SqlParameter("TeamID", teamid));
+                return results.ToList();
             }
         }
 

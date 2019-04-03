@@ -69,10 +69,10 @@ namespace NorthwindSystem.BLL
                 //generally datasets from DbSet calls return as a datatype of IEnumerable<T>
                 //this IEnumerable dataset will be turned into a list using .ToList()
                 IEnumerable<Product> results = context.Database.SqlQuery<Product>(
-                    "Products_GetByCategories @CategoryID", new SqlParameter("CategoryID",categoryid));
+                    "Products_GetByCategories @CategoryID", new SqlParameter("CategoryID", categoryid));
                 return results.ToList();
 
-               
+
                 //IEnumerable<Product> results = context.Database.SqlQuery<Product>(
                 //    "Products_GetByCategories @CategoryID, @Second", new SqlParameter("CategoryID", categoryid), new SqlParameter("SomethingID, somethingid"));
                 //return results.ToList();
@@ -90,7 +90,7 @@ namespace NorthwindSystem.BLL
             }
         }
 
-     
+
         public List<Product> Products_GetBySupplierPartialProductName(int supplierid, string partialproductname)
         {
             using (var context = new NorthwindContext())
@@ -166,7 +166,67 @@ namespace NorthwindSystem.BLL
                 //optionally this method is retuning the new primary key value
                 return item.ProductID;
             }
-           
+
+        }
+
+        //update will recieve an instance of <T> that contains the needed primary key values
+
+        //the method will return the number of rows affected
+
+        public int Product_Update(Product item)
+        {
+            using (var context = new NorthwindContext())
+            {
+                //sometimes you may have aditional fields on your entity that track dates and times that the record was altered
+                // these fields should be set by the controller method and not be altered/set by the application user
+
+                //assume that our entity has a LastModified date
+
+                //item.LastModified = DateTime.Now;
+
+                //stage 
+                context.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                //commit
+                //the value reuturned from the SaveChanges() is the number of rows affected by the update
+                return context.SaveChanges();
+            }
+        }
+
+        //only the primary key is acually required for this proccess
+        public int Product_Delete(int productid)
+        {
+            using (var context = new NorthwindContext())
+            { 
+                //physical delete
+                //removal of the physical record from the database
+
+                //Find the record on the database
+
+                var existing = context.Products.Find(productid);
+
+
+                //Remove found record
+
+                //context.Products.Remove(existing);
+
+                
+
+                //logical delete
+                //the record is NOT physically removed from the database
+                //usually a flag of some sort is set on the record
+                //instead of a .Remove, an update is accually done
+
+                //Find the record on the database
+                 existing.Discontinued = true;
+                //alter the appropriate fields on the record which will apply the logical delete
+
+
+                context.Entry(existing).State = System.Data.Entity.EntityState.Modified;
+                
+
+                //Commit and return the changes
+                return context.SaveChanges();
+            }
         }
 
 

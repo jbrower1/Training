@@ -49,42 +49,53 @@ namespace BigFootWebApp.ExercisePages
 
             }
         }
+       
         protected void Button1_Click(object sender, EventArgs e)
         {
-            //if (TeamList.SelectedIndex == 0)
-        //    {
-        //        errormsgs.Add("Select a supplier to view the supplier products.");
-        //        LoadMessageDisplay(errormsgs, "alert alert-info");
-        //        TeamGridView.DataSource = null;
-        //        TeamGridView.DataBind();
-        //    }
-        //    else
-        //    {
-        //        try
-        //        {
-        //            TeamController sysmgr = new TeamController();
-        //            List<Team> info = sysmgr.Team_Find(int.Parse(TeamList.SelectedValue));
-        //            if (info.Count == 0)
-        //            {
-        //                errormsgs.Add("No data found for the selected team");
-        //                LoadMessageDisplay(errormsgs, "alert alert-info");
-        //            }
-        //            else
-        //            {
-        //                info.Sort((x, y) => x.TeamName.CompareTo(y.TeamName));
+            if (TeamList.SelectedIndex == 0)
+            {
+                errormsgs.Add("Select a supplier to view the supplier products.");
+                LoadMessageDisplay(errormsgs, "alert alert-info");
+                PlayerGridView.DataSource = null;
+                PlayerGridView.DataBind();
+            }
+            else
+            {
+                try
+                {
 
-                //                //GridView
-                //                TeamGridView.DataSource = info;
-                //                TeamGridView.DataBind();
+                    TeamController TeamGetInfo = new TeamController();
+                    Team TeamInfo = TeamGetInfo.Team_Find(int.Parse(TeamList.SelectedValue));
 
-                //            }
-                //        }
-                //        catch (Exception ex)
-                //        {
-                //            errormsgs.Add(GetInnerException(ex).ToString());
-                //            LoadMessageDisplay(errormsgs, "alert alert-danger");
-                //        }
-                //    }
+                    Coach.Text = TeamInfo.Coach;
+                    AssistantCoach.Text = TeamInfo.AssistantCoach;
+                    if(TeamInfo.Wins == null)
+                    {
+                        Wins.Text = "0";
+                    }
+                    else
+                    {
+                        Wins.Text = TeamInfo.Wins.ToString();
+                    }
+                    
+                    if (TeamInfo.Losses == null)
+                    {
+                        Losses.Text = "0";
+                    }
+                    else
+                    {
+                        Losses.Text = TeamInfo.Losses.ToString();
+                    }
+                    
+                   
+                    
+                }
+                catch (Exception ex)
+                {
+                    errormsgs.Add(GetInnerException(ex).ToString());
+                    LoadMessageDisplay(errormsgs, "alert alert-danger");
+                }
+            }
         }
         protected Exception GetInnerException(Exception ex)
         {
@@ -109,7 +120,40 @@ namespace BigFootWebApp.ExercisePages
 
         protected void TeamList_SelectedIndexChanged(object sender, EventArgs e)
         {
-        //    
+            if (TeamList.SelectedIndex == 0)
+            {
+                errormsgs.Add("Select a supplier to view the supplier products.");
+                LoadMessageDisplay(errormsgs, "alert alert-info");
+                PlayerGridView.DataSource = null;
+                PlayerGridView.DataBind();
+            }
+            else
+            {
+                try
+                {
+                    PlayerController sysmgr = new PlayerController();
+                    List<Player> info = sysmgr.Players_GetByTeam(int.Parse(TeamList.SelectedValue));
+                    if (info.Count == 0)
+                    {
+                        errormsgs.Add("No data found for the selected team");
+                        LoadMessageDisplay(errormsgs, "alert alert-info");
+                    }
+                    else
+                    {
+                        info.Sort((x, y) => x.FullName.CompareTo(y.FullName));
+
+                        //GridView
+                        PlayerGridView.DataSource = info;
+                        PlayerGridView.DataBind();
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    errormsgs.Add(GetInnerException(ex).ToString());
+                    LoadMessageDisplay(errormsgs, "alert alert-danger");
+                }
+            }
         }
     }
 }

@@ -23,32 +23,39 @@ namespace FSISSystem.JBrow.Data
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
+        private string _Gender;
 
-        public char Gender
+        public string Gender
         {
             get
             {
-                return Gender;
+                return _Gender;
             }
             set
             {
-                Gender = char.ToUpper(value);
+                _Gender = value.ToUpper();
             }
         }
 
         public string AlbertaHealthCareNumber { get; set; }
 
+        private string _MedicalAlertDetails;
+
         public string MedicalAlertDetails
         {
             get
             {
-                return MedicalAlertDetails;
+                return _MedicalAlertDetails;
             }
             set
             {
-                if(value == "")
+                if(string.IsNullOrEmpty(value))
                 {
-                    MedicalAlertDetails = null;
+                    _MedicalAlertDetails = null;
+                }
+                else
+                {
+                    _MedicalAlertDetails = value;
                 }
                 
             }

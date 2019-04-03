@@ -10,10 +10,11 @@
         B) Place your sub menu site map nodes between the open and close tags of a-->
 
     <siteMapNode url ="~/ExercisePages/ExerciseHome.aspx" title="Exercises" description="This page holds the exercises">
-      
-        <siteMapNode url="~/ExercisePages/Exercise10.aspx" title="Exercise 10"  description="Multi Record Using Code-Behind" />
+
+
       <siteMapNode url="~/ExercisePages/Exercise7C.aspx" title="Exercise 7C"  description="Client Server Query - Team Series" />
-      
+      <siteMapNode url="~/ExercisePages/Exercise10.aspx" title="Exercise 10"  description="Multi Record Using Code-Behind" />
+
     </siteMapNode>
   </siteMapNode>
 </siteMap>

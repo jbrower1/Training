@@ -26,8 +26,18 @@
                     <asp:DropDownList ID="TeamList" runat="server"></asp:DropDownList>
                     <asp:Button ID="Button1" runat="server" Text="Search" Font-Size="Large" ForeColor="#438ACA" BackColor="White" BorderColor="White" BorderStyle="None" />
                     <br />
+                    <asp:Label ID="Label2" runat="server" Text="Coach:"></asp:Label>
+                    <asp:Label ID="Coach" runat="server" Text=""></asp:Label>
                     <br />
-                    <asp:GridView ID="TeamGridView" runat="server" BackColor="White"> 
+                    <asp:Label ID="Label3" runat="server" Text="Assistant Coach:"></asp:Label>
+                    <asp:Label ID="AssistantCoach" runat="server" Text=""></asp:Label>
+                    <br />
+                    <asp:Label ID="Label4" runat="server" Text="Wins:"></asp:Label>
+                    <asp:Label ID="Wins" runat="server" Text=""></asp:Label>
+                    <br />
+                    <asp:Label ID="Label5" runat="server" Text="Losses:"></asp:Label>
+                    <asp:Label ID="Losses" runat="server" Text=""></asp:Label>
+                    <asp:GridView ID="PlayerGridView" runat="server" BackColor="White"> 
 
                         <EmptyDataTemplate>
                             No data to show for selected category <!-- USE FOR ASSIGNMENT 10 --> 
