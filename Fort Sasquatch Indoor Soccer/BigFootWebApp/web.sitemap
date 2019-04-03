@@ -11,6 +11,8 @@
 
     <siteMapNode url ="~/ExercisePages/ExerciseHome.aspx" title="Exercises" description="This page holds the exercises">
       
+        <siteMapNode url="~/ExercisePages/Exercise10.aspx" title="Exercise 10"  description="Multi Record Using Code-Behind" />
+      
     </siteMapNode>
   </siteMapNode>
 </siteMap>

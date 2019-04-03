@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\PlayerController.cs" />
+    <Compile Include="BLL\TeamController.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DAL\FSISContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,9 +59,7 @@
       <Name>FSISSystem.JBrow.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
