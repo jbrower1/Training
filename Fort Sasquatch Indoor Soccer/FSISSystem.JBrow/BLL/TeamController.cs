@@ -22,7 +22,7 @@ namespace FSISSystem.JBrow.BLL
             }
         }
 
-        public Team Team_Find(int teamid)
+        public Team Team_Get(int teamid)
         {
             using (var context = new FSISContext())
             {

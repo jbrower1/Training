@@ -22,6 +22,15 @@ namespace BigFootWebApp.ExercisePages {
         protected global::System.Web.UI.WebControls.DataList Message;
         
         /// <summary>
+        /// Teaminfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Teaminfo;
+        
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -40,13 +49,13 @@ namespace BigFootWebApp.ExercisePages {
         protected global::System.Web.UI.WebControls.DropDownList TeamList;
         
         /// <summary>
-        /// Button1 control.
+        /// SearchButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button SearchButton;
         
         /// <summary>
         /// Label2 control.
