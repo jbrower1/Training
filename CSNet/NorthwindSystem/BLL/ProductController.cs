@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using NorthwindSystem.Data; //obtains the <T> devinitions
 using NorthwindSystem.DAL;  //obtains the context class
 using System.Data.SqlClient; //required for the parameter used in SQL Proc calls
+using System.ComponentModel;
 #endregion
 
 namespace NorthwindSystem.BLL
@@ -19,6 +20,7 @@ namespace NorthwindSystem.BLL
     //   needs to get to the Northwind database)
     //this class is the enter point into the Northwind system
     //this class needs to be public
+    [DataObject]
     public class ProductController
     {
         //this method will receive a value that
@@ -28,6 +30,7 @@ namespace NorthwindSystem.BLL
         //   for processing
         //this method will return an instance of Product
         //this method must be public
+        
         public Product Product_Get(int productid)
         {
             //the instantiation of the DbContext will
@@ -62,6 +65,7 @@ namespace NorthwindSystem.BLL
 
         // input: category id
         //output: List<Product> matching category id
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<Product> Products_GetByCategory(int categoryid)
         {
             using (var context = new NorthwindContext())

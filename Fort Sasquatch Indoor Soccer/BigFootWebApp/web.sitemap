@@ -13,6 +13,7 @@
 
 
       <siteMapNode url="~/ExercisePages/Exercise7C.aspx" title="Exercise 7C"  description="Client Server Query - Team Series" />
+      <siteMapNode url="~/ExercisePages/Exercise8C.aspx" title="Exercise 8C"  description="Client-Server Entity Insert" />
       <siteMapNode url="~/ExercisePages/Exercise10.aspx" title="Exercise 10"  description="Multi Record Using Code-Behind" />
 
     </siteMapNode>
