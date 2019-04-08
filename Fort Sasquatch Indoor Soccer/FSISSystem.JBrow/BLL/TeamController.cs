@@ -29,6 +29,9 @@ namespace FSISSystem.JBrow.BLL
                 return context.Teams.Find(teamid);
             }
         }
+         public Team Team_Add()
+        {
 
+        }
     }
 }
