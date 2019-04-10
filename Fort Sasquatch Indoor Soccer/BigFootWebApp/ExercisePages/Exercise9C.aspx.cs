@@ -47,6 +47,12 @@ namespace BigFootWebApp.ExercisePages
                 TeamList.DataBind();
                 TeamList.Items.Insert(0, "select ....");
 
+                TeamListV2.DataSource = datainfo;
+                TeamListV2.DataTextField = nameof(Team.TeamName);
+                TeamListV2.DataValueField = nameof(Team.TeamID);
+                TeamListV2.DataBind();
+                TeamListV2.Items.Insert(0, "select ....");
+
                 TeamListV3.DataSource = datainfo;
                 TeamListV3.DataTextField = nameof(Team.TeamName);
                 TeamListV3.DataValueField = nameof(Team.TeamID);
@@ -64,7 +70,6 @@ namespace BigFootWebApp.ExercisePages
 
                 errormsgs.Add(GetInnerException(ex).ToString());
                 LoadMessageDisplay(errormsgs, "alert alert-danger");
-
 
             }
         }
@@ -95,7 +100,7 @@ namespace BigFootWebApp.ExercisePages
             //WORKS!
             if (TeamList.SelectedIndex == 0)
             {
-                errormsgs.Add("Select a Team to veiw Players.");
+                errormsgs.Add("Select a Team to veiw information.");
                 LoadMessageDisplay(errormsgs, "alert alert-info");
                 Coach.Text = null;
                 AssistantCoach.Text = null;
@@ -157,26 +162,38 @@ namespace BigFootWebApp.ExercisePages
             Wins.Text = "0";
             Losses.Text = "0";
 
+            TeamListV2.ClearSelection();
+            TeamNameV2.Text = null;
+            CoachNameV2.Text = null;
+            AssistantCoachV2.Text = null;
+            WinsV2.Text = "0";
+            LossesV2.Text = "0";
+
             TeamListV3.ClearSelection();
+            TeamIDV3.Text = null;
+            TeamNameV3.Text = null;
             CoachV3.Text = null;
             AssistantCoachV3.Text = null;
             WinsV3.Text = "0";
             LossesV3.Text = "0";
 
-            TeamList.ClearSelection();
-            Coach.Text = null;
-            AssistantCoach.Text = null;
-            Wins.Text = "0";
-            Losses.Text = "0";
+            TeamListV4.ClearSelection();
+            TeamIDV4.Text = null;
+            TeamNameV4.Text = null;
+            CoachV4.Text = null;
+            AssistantCoachV4.Text = null;
+            WinsV4.Text = "0";
+            LossesV4.Text = "0";
         }
         protected void SearchButton_ClickV3(object sender, EventArgs e)
         {
-            //WORKS!
-            if (TeamList.SelectedIndex == 0)
+            //for the update view
+            if (TeamListV3.SelectedIndex == 0)
             {
-                errormsgs.Add("Select a Team to veiw Players.");
+                errormsgs.Add("Select a Team to veiw information.");
                 LoadMessageDisplay(errormsgs, "alert alert-info");
                 TeamIDV3.Text = "0";
+                TeamNameV3.Text = null;
                 CoachV3.Text = null;
                 AssistantCoachV3.Text = null;
                 WinsV3.Text = "0";
@@ -197,7 +214,9 @@ namespace BigFootWebApp.ExercisePages
                     }
                     else
                     {
+
                         TeamIDV3.Text = TeamListV3.SelectedValue;
+                        TeamNameV3.Text = TeamInfo.TeamName;
                         CoachV3.Text = TeamInfo.Coach;
                         AssistantCoachV3.Text = TeamInfo.AssistantCoach;
                         if (TeamInfo.Wins == null)
@@ -231,11 +250,12 @@ namespace BigFootWebApp.ExercisePages
         protected void SearchButton_ClickV4(object sender, EventArgs e)
         {
             //WORKS!
-            if (TeamList.SelectedIndex == 0)
+            if (TeamListV4.SelectedIndex == 0)
             {
-                errormsgs.Add("Select a Team to veiw Players.");
+                errormsgs.Add("Select a Team to veiw information.");
                 LoadMessageDisplay(errormsgs, "alert alert-info");
                 TeamIDV4.Text = "0";
+                TeamNameV4.Text = null;
                 CoachV4.Text = null;
                 AssistantCoachV4.Text = null;
                 WinsV4.Text = "0";
@@ -257,6 +277,7 @@ namespace BigFootWebApp.ExercisePages
                     else
                     {
                         TeamIDV4.Text = TeamListV4.SelectedValue;
+                        TeamNameV4.Text = TeamInfo.TeamName;
                         CoachV4.Text = TeamInfo.Coach;
                         AssistantCoachV4.Text = TeamInfo.AssistantCoach;
                         if (TeamInfo.Wins == null)
@@ -290,182 +311,190 @@ namespace BigFootWebApp.ExercisePages
 
         protected void InsertTeam_Click(object sender, EventArgs e)
         {
-
-
-            if (errormsgs.Count() > 0)
+            
+            Page.Validate("V2");
+            if (Page.IsValid)
             {
-                LoadMessageDisplay(errormsgs, "alert alert-info");
-            }
-            else
-            {
-                try
+
+                if (errormsgs.Count() > 0)
                 {
-             
-                    Team item = new Team();
-
-                    item.TeamName = TeamNameV2.Text;
-                    item.Coach = CoachNameV2.Text;
-                    item.AssistantCoach = AssistantCoachV2.Text;
-
-                    if (string.IsNullOrEmpty(WinsV2.Text))
-                    {
-                        item.Wins = 0;
-                    }
-                    else
-                    {
-                        item.Wins = int.Parse(WinsV2.Text);
-
-                    }
-                    if (string.IsNullOrEmpty(LossesV2.Text))
-                    {
-                        item.Losses = 0;
-                    }
-                    else
-                    {
-                        item.Losses = int.Parse(LossesV2.Text);
-                    }
-                    TeamController sysmgr = new TeamController();
-                  
-                    int newTeamID = sysmgr.Team_Add(item);
-
-                    errormsgs.Add(TeamNameV2.Text + " has been added to the database with a key of " + newTeamID.ToString());
-                    LoadMessageDisplay(errormsgs, "alert alert-success");
-
-                    BindTeamList();
-                    TeamList.SelectedValue = newTeamID.ToString();
-
+                    LoadMessageDisplay(errormsgs, "alert alert-info");
                 }
-                catch (DbUpdateException ex)
+                else
                 {
-                    UpdateException updateException = (UpdateException)ex.InnerException;
-                    if (updateException.InnerException != null)
+                    try
                     {
-                        errormsgs.Add(updateException.InnerException.Message.ToString());
-                    }
-                    else
-                    {
-                        errormsgs.Add(updateException.Message);
-                    }
-                    LoadMessageDisplay(errormsgs, "alert alert-danger");
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                    {
-                        foreach (var validationError in entityValidationErrors.ValidationErrors)
+
+                        Team item = new Team();
+
+                        item.TeamName = TeamNameV2.Text;
+                        item.Coach = CoachNameV2.Text;
+                        item.AssistantCoach = AssistantCoachV2.Text;
+
+                        if (string.IsNullOrEmpty(WinsV2.Text))
                         {
-                            errormsgs.Add(validationError.ErrorMessage);
+                            item.Wins = 0;
                         }
-                    }
-                    LoadMessageDisplay(errormsgs, "alert alert-danger");
-                }
-                catch (Exception ex)
-                {
-                    errormsgs.Add(GetInnerException(ex).ToString());
-                    LoadMessageDisplay(errormsgs, "alert alert-danger");
-                }
+                        else
+                        {
+                            item.Wins = int.Parse(WinsV2.Text);
 
+                        }
+                        if (string.IsNullOrEmpty(LossesV2.Text))
+                        {
+                            item.Losses = 0;
+                        }
+                        else
+                        {
+                            item.Losses = int.Parse(LossesV2.Text);
+                        }
+                        TeamController sysmgr = new TeamController();
+
+                        int newTeamID = sysmgr.Team_Add(item);
+
+                        errormsgs.Add(TeamNameV2.Text + " has been added to the database with a key of " + newTeamID.ToString());
+                        LoadMessageDisplay(errormsgs, "alert alert-success");
+
+                        BindTeamList();
+                        TeamListV2.SelectedValue = newTeamID.ToString();
+
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        UpdateException updateException = (UpdateException)ex.InnerException;
+                        if (updateException.InnerException != null)
+                        {
+                            errormsgs.Add(updateException.InnerException.Message.ToString());
+                        }
+                        else
+                        {
+                            errormsgs.Add(updateException.Message);
+                        }
+                        LoadMessageDisplay(errormsgs, "alert alert-danger");
+                    }
+                    catch (DbEntityValidationException ex)
+                    {
+                        foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                        {
+                            foreach (var validationError in entityValidationErrors.ValidationErrors)
+                            {
+                                errormsgs.Add(validationError.ErrorMessage);
+                            }
+                        }
+                        LoadMessageDisplay(errormsgs, "alert alert-danger");
+                    }
+                    catch (Exception ex)
+                    {
+                        errormsgs.Add(GetInnerException(ex).ToString());
+                        LoadMessageDisplay(errormsgs, "alert alert-danger");
+                    }
+                }
             }
+          
         }
         protected void UpdateTeam_Click(object sender, EventArgs e)
         {
-            
-            if (TeamListV3.SelectedIndex == 0)
+            Page.Validate("V3");
+            if (Page.IsValid)
             {
-                errormsgs.Add("Please select Team");
-            }                      
-            if (errormsgs.Count() > 0)
-            {
-                LoadMessageDisplay(errormsgs, "alert alert-info");
-            }
-            else
-            {
-                try
+
+                if (TeamListV3.SelectedIndex == 0)
                 {
-                    
-                    Team item = new Team();
-                   
-                    int teamid = 0;
-                    if (!int.TryParse(TeamListV3.SelectedValue, out teamid))
-                    {
-                        errormsgs.Add("Invalid or missing Team ID");
-                    }
-                
-                    item.TeamID = int.Parse(TeamIDV3.Text.Trim());
-
-                    item.TeamName = TeamNameV3.Text;
-                    item.Coach = CoachV3.Text;
-                    item.AssistantCoach = AssistantCoachV3.Text;                   
-
-                    if (WinsV3 == null)
-                    {
-                        item.Wins = 0;
-                    }
-                    else
-                    {
-                        item.Wins = int.Parse(WinsV3.Text);
-                    }
-
-                    if (LossesV3 == null)
-                    {
-                        item.Losses = 0;
-                    }
-                    else
-                    {
-                        item.Losses = int.Parse(LossesV3.Text);
-                    }
-                   
-                    TeamController sysmgr = new TeamController();
-                  
-                    int rowsaffected = sysmgr.Team_Update(item);
-
-                    if (rowsaffected == 0)
-                    {
-                        errormsgs.Add(TeamNameV3.Text + " has not been Updated, Search for Product again");
-                        LoadMessageDisplay(errormsgs, "alert alert-warning");
-                        BindTeamList();
-                    }
-                    else
-                    {
-                        errormsgs.Add(TeamNameV3.Text + " has been Updated ");
-                        LoadMessageDisplay(errormsgs, "alert alert-success");
-                        BindTeamList();
-                        TeamListV3.SelectedValue = TeamIDV3.Text;
-                    }
-                  
+                    errormsgs.Add("Please select Team");
                 }
-                catch (DbUpdateException ex)
+                if (errormsgs.Count() > 0)
                 {
-                    UpdateException updateException = (UpdateException)ex.InnerException;
-                    if (updateException.InnerException != null)
-                    {
-                        errormsgs.Add(updateException.InnerException.Message.ToString());
-                    }
-                    else
-                    {
-                        errormsgs.Add(updateException.Message);
-                    }
-                    LoadMessageDisplay(errormsgs, "alert alert-danger");
+                    LoadMessageDisplay(errormsgs, "alert alert-info");
                 }
-                catch (DbEntityValidationException ex)
+                else
                 {
-                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    try
                     {
-                        foreach (var validationError in entityValidationErrors.ValidationErrors)
+
+                        Team item = new Team();
+
+                        int teamid = 0;
+                        if (!int.TryParse(TeamListV3.SelectedValue, out teamid))
                         {
-                            errormsgs.Add(validationError.ErrorMessage);
+                            errormsgs.Add("Invalid or missing Team ID");
                         }
+
+                        item.TeamID = int.Parse(TeamIDV3.Text.Trim());
+
+                        item.TeamName = TeamNameV3.Text;
+                        item.Coach = CoachV3.Text;
+                        item.AssistantCoach = AssistantCoachV3.Text;
+
+                        if (WinsV3 == null)
+                        {
+                            item.Wins = 0;
+                        }
+                        else
+                        {
+                            item.Wins = int.Parse(WinsV3.Text);
+                        }
+
+                        if (LossesV3 == null)
+                        {
+                            item.Losses = 0;
+                        }
+                        else
+                        {
+                            item.Losses = int.Parse(LossesV3.Text);
+                        }
+
+                        TeamController sysmgr = new TeamController();
+
+                        int rowsaffected = sysmgr.Team_Update(item);
+
+                        if (rowsaffected == 0)
+                        {
+                            errormsgs.Add(TeamNameV3.Text + " has not been Updated, Search for Product again");
+                            LoadMessageDisplay(errormsgs, "alert alert-warning");
+                            BindTeamList();
+                        }
+                        else
+                        {
+                            errormsgs.Add(TeamNameV3.Text + " has been Updated ");
+                            LoadMessageDisplay(errormsgs, "alert alert-success");
+                            BindTeamList();
+                            TeamListV3.SelectedValue = TeamIDV3.Text;
+                        }
+
                     }
-                    LoadMessageDisplay(errormsgs, "alert alert-danger");
-                }
-                catch (Exception ex)
-                {
-                    errormsgs.Add(GetInnerException(ex).ToString());
-                    LoadMessageDisplay(errormsgs, "alert alert-danger");
-                }
+                    catch (DbUpdateException ex)
+                    {
+                        UpdateException updateException = (UpdateException)ex.InnerException;
+                        if (updateException.InnerException != null)
+                        {
+                            errormsgs.Add(updateException.InnerException.Message.ToString());
+                        }
+                        else
+                        {
+                            errormsgs.Add(updateException.Message);
+                        }
+                        LoadMessageDisplay(errormsgs, "alert alert-danger");
+                    }
+                    catch (DbEntityValidationException ex)
+                    {
+                        foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                        {
+                            foreach (var validationError in entityValidationErrors.ValidationErrors)
+                            {
+                                errormsgs.Add(validationError.ErrorMessage);
+                            }
+                        }
+                        LoadMessageDisplay(errormsgs, "alert alert-danger");
+                    }
+                    catch (Exception ex)
+                    {
+                        errormsgs.Add(GetInnerException(ex).ToString());
+                        LoadMessageDisplay(errormsgs, "alert alert-danger");
+                    }
 
+                }
             }
-
+           
         }
 
         protected void DeleteTeam_Click(object sender, EventArgs e) //may be incomplete
@@ -474,9 +503,8 @@ namespace BigFootWebApp.ExercisePages
             {
                 errormsgs.Add("Please select Team");
 
+            }
 
-            }           
-           
             if (errormsgs.Count() > 0)
             {
                 LoadMessageDisplay(errormsgs, "alert alert-info");
@@ -484,9 +512,9 @@ namespace BigFootWebApp.ExercisePages
             else
             {
                 try
-                {                   
+                {
                     Team item = new Team();
-                  
+
                     int teamid = 0;
                     if (!int.TryParse(TeamListV4.SelectedValue, out teamid))
                     {
@@ -518,7 +546,7 @@ namespace BigFootWebApp.ExercisePages
                     }
 
                     TeamController sysmgr = new TeamController();
-                 
+
                     int rowsaffected = sysmgr.Team_Delete(int.Parse(TeamListV4.SelectedValue));
 
                     if (rowsaffected == 0)
@@ -533,6 +561,12 @@ namespace BigFootWebApp.ExercisePages
                         errormsgs.Add(TeamNameV4.Text + " has been Deleted ");
                         LoadMessageDisplay(errormsgs, "alert alert-success");
                         BindTeamList();
+                        TeamIDV4.Text = null;
+                        TeamNameV4.Text = null;
+                        CoachV4.Text = null;
+                        AssistantCoachV4.Text = null;
+                        WinsV4.Text = "0";
+                        LossesV4.Text = "0";
                     }
 
                 }
@@ -567,5 +601,6 @@ namespace BigFootWebApp.ExercisePages
                 }
             }
         }
+       
     }
 }

@@ -45,6 +45,13 @@ namespace BigFootWebApp.ExercisePages
                 TeamList.DataValueField = nameof(Team.TeamID);
                 TeamList.DataBind();
                 TeamList.Items.Insert(0, "select ....");
+
+                TeamListV2.DataSource = datainfo;
+                TeamListV2.DataTextField = nameof(Team.TeamName);
+                TeamListV2.DataValueField = nameof(Team.TeamID);
+                TeamListV2.DataBind();
+                TeamListV2.Items.Insert(0, "select ....");
+
             }
             catch (Exception ex)
             {
@@ -149,7 +156,9 @@ namespace BigFootWebApp.ExercisePages
 
         protected void InsertTeam_Click(object sender, EventArgs e)
         {
-         
+
+            if (Page.IsValid)
+            {
 
                 if (errormsgs.Count() > 0)
                 {
@@ -166,7 +175,7 @@ namespace BigFootWebApp.ExercisePages
                         item.TeamName = TeamNameV2.Text;
                         item.Coach = CoachNameV2.Text;
                         item.AssistantCoach = AssistantCoachV2.Text;
-                                             
+
                         if (string.IsNullOrEmpty(WinsV2.Text))
                         {
                             item.Wins = 0;
@@ -195,7 +204,7 @@ namespace BigFootWebApp.ExercisePages
 
                         // also if any controll uses this new instance for a query or other action, you must update (refresh) that control
                         BindTeamList();
-                        TeamList.SelectedValue = newTeamID.ToString();
+                        TeamListV2.SelectedValue = newTeamID.ToString();
 
                     }
                     catch (DbUpdateException ex)
@@ -227,7 +236,7 @@ namespace BigFootWebApp.ExercisePages
                         errormsgs.Add(GetInnerException(ex).ToString());
                         LoadMessageDisplay(errormsgs, "alert alert-danger");
                     }
-                
+                }
             }
         }
     }

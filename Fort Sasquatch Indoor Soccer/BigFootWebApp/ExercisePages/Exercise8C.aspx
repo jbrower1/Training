@@ -20,6 +20,24 @@
     </asp:DataList>
     <br />
 
+      <asp:RequiredFieldValidator ID="RequiredFieldTeamNameV2" runat="server" ControlToValidate="TeamNameV2"
+        ErrorMessage="Team Name is Required" Display="None" SetFocusOnError="true" ForeColor="Firebrick"></asp:RequiredFieldValidator>
+    
+    <asp:RequiredFieldValidator ID="RequiredFieldCoachV2" runat="server" ControlToValidate="CoachNameV2"
+        ErrorMessage="Coach Name is Required" Display="None" SetFocusOnError="true" ForeColor="Firebrick"></asp:RequiredFieldValidator>
+   
+    <asp:RequiredFieldValidator ID="RequiredFieldAssistantV2" runat="server" ControlToValidate="AssistantCoachV2"
+        ErrorMessage="Assistant Coach Name is Required" Display="None" SetFocusOnError="true" ForeColor="Firebrick"></asp:RequiredFieldValidator>
+   
+   <asp:CompareValidator ID="CompareWinsV2" runat="server" ErrorMessage="Wins Must be 0 or Greater"
+         ControlToValidate="WinsV2" Display="None" SetFocusOnError="true" ForeColor="Firebrick" Type="Integer" Operator="LessThanEqual" ValueToCompare="0"></asp:CompareValidator>
+   
+     <asp:CompareValidator ID="CompareLossesV2" runat="server" ErrorMessage="Wins Must be 0 or Greater"
+         ControlToValidate="LossesV2" Display="None" SetFocusOnError="true" ForeColor="Firebrick" Type="Integer" Operator="LessThanEqual" ValueToCompare="0"></asp:CompareValidator>
+    
+    <asp:ValidationSummary ID="ValidationContestEntry" runat="server" HeaderText="Correct the following errors and resubmit" CssClass="alert alert-danger" />
+
+
     <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal"
         StaticMenuItemStyle-CssClass="tab"
         Font-Size="Large" StaticSelectedStyle-CssClass="selectedTab"
@@ -42,6 +60,7 @@
                     <asp:Label ID="Teaminfo" runat="server"></asp:Label>
                     <asp:Label ID="Label1" runat="server" Text="Teams: "></asp:Label>
                     <asp:DropDownList ID="TeamList" runat="server"></asp:DropDownList>
+                    
                     <asp:Button ID="SearchButton" runat="server" Text="Search" Font-Size="Large" ForeColor="#438ACA" BackColor="White"
                         BorderColor="White" BorderStyle="None" OnClick="SearchButton_Click1" />
                     <asp:Button ID="ClearButton" runat="server" Text="Clear" Font-Size="Large" ForeColor="#438ACA" BackColor="White" 
@@ -63,6 +82,9 @@
             <asp:View ID="View2" runat="server">
                 <fieldset class="form-horizontal">
                     <legend>Team Series: Team Insert</legend>
+                    <asp:Label ID="Label6" runat="server" Text="Teams: "></asp:Label>
+                    <asp:DropDownList ID="TeamListV2" runat="server"></asp:DropDownList>
+                    <br />
                     <asp:Label ID="label7" runat="server" Text="Team Name:">
                     </asp:Label>
                     <asp:TextBox ID="TeamNameV2" runat="server"></asp:TextBox>
