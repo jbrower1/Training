@@ -150,6 +150,7 @@
     <Content Include="ExercisePages\Exercise10.aspx" />
     <Content Include="ExercisePages\Exercise7C.aspx" />
     <Content Include="ExercisePages\Exercise8C.aspx" />
+    <Content Include="ExercisePages\Exercise9C.aspx" />
     <Content Include="ExercisePages\ExerciseHome.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -246,6 +247,13 @@
     </Compile>
     <Compile Include="ExercisePages\Exercise8C.aspx.designer.cs">
       <DependentUpon>Exercise8C.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExercisePages\Exercise9C.aspx.cs">
+      <DependentUpon>Exercise9C.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExercisePages\Exercise9C.aspx.designer.cs">
+      <DependentUpon>Exercise9C.aspx</DependentUpon>
     </Compile>
     <Compile Include="ExercisePages\ExerciseHome.aspx.cs">
       <DependentUpon>ExerciseHome.aspx</DependentUpon>

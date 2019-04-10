@@ -5,15 +5,13 @@
     <siteMapNode url="~/About.aspx" title="About"  description="" />
     <siteMapNode url="~/Contact.aspx" title="Contact"  description="" />
 
-    <!--A drop down menu
-        A) create a pair of sitemap node tags, open and close
-        B) Place your sub menu site map nodes between the open and close tags of a-->
 
     <siteMapNode url ="~/ExercisePages/ExerciseHome.aspx" title="Exercises" description="This page holds the exercises">
 
 
       <siteMapNode url="~/ExercisePages/Exercise7C.aspx" title="Exercise 7C"  description="Client Server Query - Team Series" />
       <siteMapNode url="~/ExercisePages/Exercise8C.aspx" title="Exercise 8C"  description="Client-Server Entity Insert" />
+      <siteMapNode url="~/ExercisePages/Exercise9C.aspx" title="Exercise 9C"  description="Client-Server Entity Update/Delete" />
       <siteMapNode url="~/ExercisePages/Exercise10.aspx" title="Exercise 10"  description="Multi Record Using Code-Behind" />
 
     </siteMapNode>
