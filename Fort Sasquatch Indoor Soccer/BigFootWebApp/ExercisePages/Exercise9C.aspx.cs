@@ -197,7 +197,7 @@ namespace BigFootWebApp.ExercisePages
                     }
                     else
                     {
-                        TeamIDV3.Text = TeamInfo.TeamID.ToString();
+                        TeamIDV3.Text = TeamListV3.SelectedValue;
                         CoachV3.Text = TeamInfo.Coach;
                         AssistantCoachV3.Text = TeamInfo.AssistantCoach;
                         if (TeamInfo.Wins == null)
@@ -256,7 +256,7 @@ namespace BigFootWebApp.ExercisePages
                     }
                     else
                     {
-                        TeamIDV4.Text = TeamInfo.TeamID.ToString();
+                        TeamIDV4.Text = TeamListV4.SelectedValue;
                         CoachV4.Text = TeamInfo.Coach;
                         AssistantCoachV4.Text = TeamInfo.AssistantCoach;
                         if (TeamInfo.Wins == null)
@@ -386,7 +386,7 @@ namespace BigFootWebApp.ExercisePages
                     Team item = new Team();
                    
                     int teamid = 0;
-                    if (!int.TryParse(TeamIDV3.Text.Trim(), out teamid))
+                    if (!int.TryParse(TeamListV3.SelectedValue, out teamid))
                     {
                         errormsgs.Add("Invalid or missing Team ID");
                     }
@@ -488,12 +488,12 @@ namespace BigFootWebApp.ExercisePages
                     Team item = new Team();
                   
                     int teamid = 0;
-                    if (!int.TryParse(TeamIDV4.Text.Trim(), out teamid))
+                    if (!int.TryParse(TeamListV4.SelectedValue, out teamid))
                     {
                         errormsgs.Add("Invalid or missing Product ID");
                     }
 
-                    item.TeamID = int.Parse(TeamIDV4.Text.Trim());
+                    item.TeamID = int.Parse(TeamListV4.SelectedValue);
 
                     item.TeamName = TeamNameV4.Text;
                     item.Coach = CoachV4.Text;
@@ -519,7 +519,7 @@ namespace BigFootWebApp.ExercisePages
 
                     TeamController sysmgr = new TeamController();
                  
-                    int rowsaffected = sysmgr.Team_Delete(int.Parse(TeamIDV4.Text.Trim()));
+                    int rowsaffected = sysmgr.Team_Delete(int.Parse(TeamListV4.SelectedValue));
 
                     if (rowsaffected == 0)
                     {
