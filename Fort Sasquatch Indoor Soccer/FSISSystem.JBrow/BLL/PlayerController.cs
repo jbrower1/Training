@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 using FSISSystem.JBrow.Data; 
 using FSISSystem.JBrow.DAL;
 using System.Data.SqlClient;
+using System.ComponentModel;
 #endregion
 
 namespace FSISSystem.JBrow.BLL
 {
+    [DataObject]
     public class PlayerController
     {
 
@@ -22,6 +24,20 @@ namespace FSISSystem.JBrow.BLL
                 IEnumerable<Player> results =
                     context.Database.SqlQuery<Player>("Player_GetByTeam @TeamID",
                                     new SqlParameter("TeamID", teamid));
+                return results.ToList();
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<Player> Player_GetByAgeGender(int age, string gender)
+        {
+            
+            using (var context = new FSISContext())
+            {
+                IEnumerable<Player> results = context.Database.SqlQuery<Player>
+                   ("Player_GetByAgeGender @Age, @Gender ", 
+                    new SqlParameter("Age", age), 
+                    new SqlParameter("Gender", char.Parse(gender)));
                 return results.ToList();
             }
         }

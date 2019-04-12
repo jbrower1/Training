@@ -148,6 +148,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="ExercisePages\Exercise10.aspx" />
+    <Content Include="ExercisePages\Exercise11.aspx" />
     <Content Include="ExercisePages\Exercise7C.aspx" />
     <Content Include="ExercisePages\Exercise8C.aspx" />
     <Content Include="ExercisePages\Exercise9C.aspx" />
@@ -233,6 +234,13 @@
     </Compile>
     <Compile Include="ExercisePages\Exercise10.aspx.designer.cs">
       <DependentUpon>Exercise10.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExercisePages\Exercise11.aspx.cs">
+      <DependentUpon>Exercise11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExercisePages\Exercise11.aspx.designer.cs">
+      <DependentUpon>Exercise11.aspx</DependentUpon>
     </Compile>
     <Compile Include="ExercisePages\Exercise7C.aspx.cs">
       <DependentUpon>Exercise7C.aspx</DependentUpon>
